@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: api-playground-api
+    env: docker
+    dockerfilePath: ./Dockerfile.api
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ASPNETCORE_URLS
+        value: http://+:80
+    plan: free
+    
+  - type: web
+    name: api-playground-frontend
+    env: docker
+    dockerfilePath: ./Dockerfile.frontend
+    envVars:
+      - key: REACT_APP_API_URL
+        fromService:
+          type: web
+          name: api-playground-api
+          property: host
+    plan: free 

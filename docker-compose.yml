@@ -1,0 +1,53 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: api-playground-api
+    ports:
+      - "${API_PORT:-5001}:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT:-Production}
+      - ASPNETCORE_URLS=http://+:80
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID}
+      - GITHUB_CLIENT_SECRET=${GITHUB_CLIENT_SECRET}
+      - GITHUB_PERSONAL_ACCESS_TOKEN=${GITHUB_PERSONAL_ACCESS_TOKEN}
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-http://localhost:3000}
+      - LOG_LEVEL=${LOG_LEVEL:-Information}
+      - DEFAULT_REQUEST_TIMEOUT=${DEFAULT_REQUEST_TIMEOUT:-30000}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - JWT_ISSUER=${JWT_ISSUER:-ApiPlayground}
+      - JWT_AUDIENCE=${JWT_AUDIENCE:-ApiPlaygroundUsers}
+    networks:
+      - api-playground
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    env_file:
+      - .env
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: api-playground-frontend
+    ports:
+      - "${FRONTEND_PORT:-3000}:80"
+    depends_on:
+      - api
+    environment:
+      - REACT_APP_API_URL=http://localhost:${API_PORT:-5001}
+      - REACT_APP_GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID}
+      - REACT_APP_OAUTH_REDIRECT_URI=${OAUTH_REDIRECT_URI:-http://localhost:3000/oauth/callback}
+    networks:
+      - api-playground
+    env_file:
+      - .env
+
+networks:
+  api-playground:
+    driver: bridge

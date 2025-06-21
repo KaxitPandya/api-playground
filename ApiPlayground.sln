@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiPlayground.API", "ApiPlayground.API\ApiPlayground.API.csproj", "{62F2C82D-D3C3-4A23-B5B3-C66E06D51A4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiPlayground.Core", "ApiPlayground.Core\ApiPlayground.Core.csproj", "{E97DEC10-D345-4AF4-B5A9-30FDBB87629C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiPlayground.Tests", "ApiPlayground.Tests\ApiPlayground.Tests.csproj", "{FFBF2C1E-1F9A-4C37-AA23-B44445C72A8F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62F2C82D-D3C3-4A23-B5B3-C66E06D51A4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62F2C82D-D3C3-4A23-B5B3-C66E06D51A4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62F2C82D-D3C3-4A23-B5B3-C66E06D51A4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62F2C82D-D3C3-4A23-B5B3-C66E06D51A4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E97DEC10-D345-4AF4-B5A9-30FDBB87629C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E97DEC10-D345-4AF4-B5A9-30FDBB87629C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E97DEC10-D345-4AF4-B5A9-30FDBB87629C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E97DEC10-D345-4AF4-B5A9-30FDBB87629C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFBF2C1E-1F9A-4C37-AA23-B44445C72A8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFBF2C1E-1F9A-4C37-AA23-B44445C72A8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFBF2C1E-1F9A-4C37-AA23-B44445C72A8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFBF2C1E-1F9A-4C37-AA23-B44445C72A8F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
