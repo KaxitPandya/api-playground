@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Dialog,
   DialogTitle,
@@ -78,6 +78,11 @@ const EnhancedExecutionView: React.FC<EnhancedExecutionViewProps> = ({
   
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  
+  // Clear error state on component mount
+  useEffect(() => {
+    setError(null);
+  }, []);
   
   // Extract placeholders from integration requests
   const extractPlaceholders = () => {
@@ -208,6 +213,8 @@ const EnhancedExecutionView: React.FC<EnhancedExecutionViewProps> = ({
         results = await ExecutionService.executeWithConfig(integration.id, config);
       }
 
+      // Clear error state on successful execution
+      setError(null);
       onExecutionComplete(results);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to execute integration');

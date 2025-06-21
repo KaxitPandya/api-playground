@@ -184,7 +184,7 @@ export const ExecutionService = {
     config: ExecutionConfig
   ): Promise<RequestResult[]> => {
     const response = await api.post<RequestResult[]>(
-      `/api/executions/integration/${integrationId}/config`,
+      `/api/executions/integration/${integrationId}/advanced`,
       config
     );
     return response.data;
