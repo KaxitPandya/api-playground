@@ -32,8 +32,8 @@ namespace ApiPlayground.Tests.Data
             Assert.Single(integrations);
             
             var integration = integrations.First();
-            Assert.Equal("GitHub User API Demo", integration.Name);
-            Assert.Equal("A simple integration to fetch GitHub user data", integration.Description);
+            Assert.Equal("GitHub API", integration.Name);
+            Assert.Equal("Collection of GitHub API calls for repository and user data", integration.Description);
             Assert.Equal(2, integration.Requests.Count);
             
             // Verify the requests

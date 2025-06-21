@@ -85,51 +85,51 @@ api.interceptors.request.use(
 
 export const IntegrationService = {
   getAll: async (): Promise<Integration[]> => {
-    const response = await api.get<Integration[]>('/integrations');
+    const response = await api.get<Integration[]>('/api/integrations');
     return response.data;
   },
 
   getById: async (id: string): Promise<Integration> => {
-    const response = await api.get<Integration>(`/integrations/${id}`);
+    const response = await api.get<Integration>(`/api/integrations/${id}`);
     return response.data;
   },
 
   create: async (integration: Partial<Integration>): Promise<Integration> => {
-    const response = await api.post<Integration>('/integrations', integration);
+    const response = await api.post<Integration>('/api/integrations', integration);
     return response.data;
   },
 
   update: async (integration: Integration): Promise<void> => {
-    await api.put(`/integrations/${integration.id}`, integration);
+    await api.put(`/api/integrations/${integration.id}`, integration);
   },
 
   delete: async (id: string): Promise<void> => {
-    await api.delete(`/integrations/${id}`);
+    await api.delete(`/api/integrations/${id}`);
   },
 };
 
 export const RequestService = {
   getByIntegrationId: async (integrationId: string): Promise<Request[]> => {
-    const response = await api.get<Request[]>(`/requests/integration/${integrationId}`);
+    const response = await api.get<Request[]>(`/api/requests/integration/${integrationId}`);
     return response.data;
   },
 
   getById: async (id: string): Promise<Request> => {
-    const response = await api.get<Request>(`/requests/${id}`);
+    const response = await api.get<Request>(`/api/requests/${id}`);
     return response.data;
   },
 
   create: async (request: Partial<Request>): Promise<Request> => {
-    const response = await api.post<Request>('/requests', request);
+    const response = await api.post<Request>('/api/requests', request);
     return response.data;
   },
 
   update: async (request: Request): Promise<void> => {
-    await api.put(`/requests/${request.id}`, request);
+    await api.put(`/api/requests/${request.id}`, request);
   },
 
   delete: async (id: string): Promise<void> => {
-    await api.delete(`/requests/${id}`);
+    await api.delete(`/api/requests/${id}`);
   },
 };
 
@@ -139,7 +139,7 @@ export const ExecutionService = {
     placeholders?: PlaceholderMap
   ): Promise<RequestResult> => {
     const response = await api.post<RequestResult>(
-      `/executions/request/${requestId}`, 
+      `/api/executions/request/${requestId}`, 
       placeholders
     );
     return response.data;
@@ -150,7 +150,7 @@ export const ExecutionService = {
     placeholders?: PlaceholderMap
   ): Promise<RequestResult[]> => {
     const response = await api.post<RequestResult[]>(
-      `/executions/integration/${integrationId}`, 
+      `/api/executions/integration/${integrationId}`, 
       placeholders
     );
     return response.data;
@@ -162,7 +162,7 @@ export const ExecutionService = {
     request: ParallelExecutionRequest
   ): Promise<RequestResult[]> => {
     const response = await api.post<RequestResult[]>(
-      `/executions/integration/${integrationId}/parallel`,
+      `/api/executions/integration/${integrationId}/parallel`,
       request
     );
     return response.data;
@@ -173,7 +173,7 @@ export const ExecutionService = {
     request: ConditionalExecutionRequest
   ): Promise<RequestResult[]> => {
     const response = await api.post<RequestResult[]>(
-      `/executions/integration/${integrationId}/conditional`,
+      `/api/executions/integration/${integrationId}/conditional`,
       request
     );
     return response.data;
@@ -184,7 +184,7 @@ export const ExecutionService = {
     config: ExecutionConfig
   ): Promise<RequestResult[]> => {
     const response = await api.post<RequestResult[]>(
-      `/executions/integration/${integrationId}/config`,
+      `/api/executions/integration/${integrationId}/config`,
       config
     );
     return response.data;
@@ -194,17 +194,17 @@ export const ExecutionService = {
 // New AI Generation Service
 export const AIService = {
   generateIntegration: async (request: AIGenerationRequest): Promise<AIGenerationResponse> => {
-    const response = await api.post<AIGenerationResponse>('/ai/generate', request);
+    const response = await api.post<AIGenerationResponse>('/api/ai/generate', request);
     return response.data;
   },
 
   suggestImprovements: async (integrationId: string): Promise<string[]> => {
-    const response = await api.get<string[]>(`/ai/suggestions/${integrationId}`);
+    const response = await api.get<string[]>(`/api/ai/suggestions/${integrationId}`);
     return response.data;
   },
 
   explainIntegration: async (integrationId: string): Promise<string> => {
-    const response = await api.get<string>(`/ai/explain/${integrationId}`);
+    const response = await api.get<string>(`/api/ai/explain/${integrationId}`);
     return response.data;
   },
 };
@@ -212,7 +212,7 @@ export const AIService = {
 // New OpenAPI Import Service
 export const OpenAPIService = {
   importFromUrl: async (url: string, baseUrl?: string, selectedOperations?: string[]): Promise<OpenAPIImportResponse> => {
-    const response = await api.post<OpenAPIImportResponse>('/openapi/import-url', {
+    const response = await api.post<OpenAPIImportResponse>('/api/openapi/import-url', {
       url,
       baseUrl,
       selectedOperations: selectedOperations || []
@@ -221,7 +221,7 @@ export const OpenAPIService = {
   },
 
   importFromFile: async (fileContent: string, baseUrl?: string, selectedOperations?: string[]): Promise<OpenAPIImportResponse> => {
-    const response = await api.post<OpenAPIImportResponse>('/openapi/import-file', {
+    const response = await api.post<OpenAPIImportResponse>('/api/openapi/import-file', {
       fileContent,
       baseUrl,
       selectedOperations: selectedOperations || []
@@ -232,11 +232,11 @@ export const OpenAPIService = {
   getAvailableOperations: async (source: string, isUrl: boolean = true): Promise<string[]> => {
     if (isUrl) {
       // For URLs, use GET with query parameter
-      const response = await api.get<string[]>(`/openapi/operations?url=${encodeURIComponent(source)}`);
+      const response = await api.get<string[]>(`/api/openapi/operations?url=${encodeURIComponent(source)}`);
       return response.data;
     } else {
       // For file content, use POST with fileContent in body
-      const response = await api.post<string[]>('/openapi/operations', {
+      const response = await api.post<string[]>('/api/openapi/operations', {
         fileContent: source
       });
       return response.data;
@@ -247,7 +247,7 @@ export const OpenAPIService = {
 // New OAuth Service
 export const OAuthService = {
   getAuthorizationUrl: async (integrationId: string, state?: string): Promise<string> => {
-    const response = await api.post<string>(`/oauth/authorize`, {
+    const response = await api.post<string>(`/api/oauth/authorize`, {
       integrationId,
       state
     });
@@ -255,7 +255,7 @@ export const OAuthService = {
   },
 
   exchangeCodeForToken: async (integrationId: string, code: string, state?: string): Promise<OAuthTokenResponse> => {
-    const response = await api.post<OAuthTokenResponse>(`/oauth/token`, {
+    const response = await api.post<OAuthTokenResponse>(`/api/oauth/token`, {
       integrationId,
       code,
       state
@@ -264,7 +264,7 @@ export const OAuthService = {
   },
 
   refreshToken: async (integrationId: string, refreshToken: string): Promise<OAuthTokenResponse> => {
-    const response = await api.post<OAuthTokenResponse>(`/oauth/refresh`, {
+    const response = await api.post<OAuthTokenResponse>(`/api/oauth/refresh`, {
       integrationId,
       refreshToken
     });
@@ -272,19 +272,19 @@ export const OAuthService = {
   },
 
   isTokenValid: async (integrationId: string): Promise<boolean> => {
-    const response = await api.get<boolean>(`/oauth/validate/${integrationId}`);
+    const response = await api.get<boolean>(`/api/oauth/validate/${integrationId}`);
     return response.data;
   },
 
   revokeToken: async (integrationId: string): Promise<void> => {
-    await api.post(`/oauth/revoke/${integrationId}`);
+    await api.post(`/api/oauth/revoke/${integrationId}`);
   },
 };
 
 // Health check service
 export const HealthService = {
   check: async (): Promise<string> => {
-    const response = await api.get<string>('/health');
+    const response = await api.get<string>('/api/health');
     return response.data;
   },
 };

@@ -12,20 +12,20 @@ public static class SeedData
             return;
         }
 
-        // Create sample integration with fixed ID
-        var integration = new Integration
+        // Create GitHub integration with fixed ID
+        var githubIntegration = new Integration
         {
             Id = "github-demo-integration-001",
-            Name = "GitHub User API Demo",
-            Description = "A simple integration to fetch GitHub user data",
+            Name = "GitHub API",
+            Description = "Collection of GitHub API calls for repository and user data",
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow
         };
 
-        context.Integrations.Add(integration);
+        context.Integrations.Add(githubIntegration);
 
-        // Create sample requests with fixed IDs
-        var requests = new List<Request>
+        // Create GitHub requests with fixed IDs
+        var githubRequests = new List<Request>
         {
             new Request
             {
@@ -39,7 +39,7 @@ public static class SeedData
                     { "User-Agent", "API-Playground" }
                 },
                 Order = 0,
-                IntegrationId = integration.Id,
+                IntegrationId = githubIntegration.Id,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             },
@@ -55,13 +55,13 @@ public static class SeedData
                     { "User-Agent", "API-Playground" }
                 },
                 Order = 1,
-                IntegrationId = integration.Id,
+                IntegrationId = githubIntegration.Id,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             }
         };
 
-        context.Requests.AddRange(requests);
+        context.Requests.AddRange(githubRequests);
         context.SaveChanges();
     }
 }

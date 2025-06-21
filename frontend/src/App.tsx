@@ -6,7 +6,9 @@ import IntegrationList from './components/IntegrationList';
 import IntegrationDetail from './components/IntegrationDetail';
 import RequestForm from './components/RequestForm';
 import ExecutionView from './components/ExecutionView';
-import TokenManager from './components/TokenManager';
+import OAuthDemo from './components/OAuthDemo';
+import OAuthCallback from './components/OAuthCallback';
+// import TokenManager from './components/TokenManager';
 
 const theme = createTheme({
   palette: {
@@ -29,7 +31,7 @@ function App() {
       <Router>
         <AppHeader />
         <Container maxWidth="xl" sx={{ mt: 3, mb: 4 }}>
-          <TokenManager onTokenChange={setToken} />
+          {/* <TokenManager onTokenChange={setToken} /> */}
           <Box>
             <Routes>
               <Route path="/" element={<IntegrationList />} />
@@ -37,6 +39,8 @@ function App() {
               <Route path="/integrations/:id/requests/new" element={<RequestForm />} />
               <Route path="/requests/:id/edit" element={<RequestForm />} />
               <Route path="/integrations/:id/execute" element={<ExecutionView />} />
+              <Route path="/oauth/demo" element={<OAuthDemo />} />
+              <Route path="/oauth/callback" element={<OAuthCallback />} />
             </Routes>
           </Box>
         </Container>

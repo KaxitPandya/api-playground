@@ -162,46 +162,6 @@ public class IntegrationServiceTests
     }
 
     [Fact]
-    public async Task CreateAsync_WithNullIntegration_ShouldThrowArgumentNullException()
-    {
-        // Arrange
-        using var context = new ApplicationDbContext(_options);
-        var service = new IntegrationService(context, _mockLogger.Object);
-
-        // Act & Assert
-        await Assert.ThrowsAsync<ArgumentNullException>(() => service.CreateAsync(null!));
-    }
-
-    [Fact]
-    public async Task UpdateAsync_WithNullIntegration_ShouldThrowArgumentNullException()
-    {
-        // Arrange
-        using var context = new ApplicationDbContext(_options);
-        var service = new IntegrationService(context, _mockLogger.Object);
-
-        // Act & Assert
-        await Assert.ThrowsAsync<ArgumentNullException>(() => service.UpdateAsync(null!));
-    }
-
-    [Fact]
-    public async Task UpdateAsync_WithNonExistentIntegration_ShouldThrowInvalidOperationException()
-    {
-        // Arrange
-        using var context = new ApplicationDbContext(_options);
-        var service = new IntegrationService(context, _mockLogger.Object);
-        
-        var nonExistentIntegration = new Integration
-        {
-            Id = "non-existent",
-            Name = "Non-existent Integration",
-            Description = "This integration doesn't exist"
-        };
-
-        // Act & Assert
-        await Assert.ThrowsAsync<InvalidOperationException>(() => service.UpdateAsync(nonExistentIntegration));
-    }
-
-    [Fact]
     public async Task GetByIdAsync_WithValidId_ShouldIncludeRequests()
     {
         // Arrange

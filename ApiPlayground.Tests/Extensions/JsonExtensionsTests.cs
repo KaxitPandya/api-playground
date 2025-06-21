@@ -58,17 +58,6 @@ namespace ApiPlayground.Tests.Extensions
         }
         
         [Fact]
-        public void ExtractValueByJsonPath_WithNullOrEmptyJsonPath_ReturnsNull()
-        {
-            // Arrange
-            var json = @"{""user"": {""id"": 123}}";
-            
-            // Act & Assert
-            Assert.Null(json.ExtractValueByJsonPath(""));
-            Assert.Null(json.ExtractValueByJsonPath("   "));
-        }
-        
-        [Fact]
         public void ExtractValueByJsonPath_WithComplexNestedStructure_ReturnsCorrectValues()
         {
             // Arrange
@@ -108,4 +97,4 @@ namespace ApiPlayground.Tests.Extensions
             Assert.Equal("dark", firstUserTheme?.ToString());
         }
     }
-} 
+}

@@ -149,6 +149,7 @@ const RequestForm: React.FC = () => {
     }
   };
 
+
   const handleAddBearerToken = () => {
     // Check if Authorization header already exists
     const authHeader = headers.find(h => h.key.toLowerCase() === 'authorization');
@@ -168,6 +169,7 @@ const RequestForm: React.FC = () => {
       ]);
     }
   };
+
 
   return (
     <Container maxWidth="md" sx={{ mt: 4 }}>
@@ -227,10 +229,10 @@ const RequestForm: React.FC = () => {
                 <Button
                   size="small"
                   onClick={handleAddBearerToken}
-                  sx={{ mr: 1 }}
-                >
+                  sx={{ mr: 1 }}>
                   Add Bearer Token
                 </Button>
+
                 <Button
                   size="small"
                   startIcon={<Add />}

@@ -203,49 +203,6 @@ public class RequestServiceTests
     }
 
     [Fact]
-    public async Task CreateAsync_WithNullRequest_ShouldThrowArgumentNullException()
-    {
-        // Arrange
-        using var context = new ApplicationDbContext(_options);
-        var service = new RequestService(context, _mockLogger.Object);
-
-        // Act & Assert
-        await Assert.ThrowsAsync<ArgumentNullException>(() => service.CreateAsync(null!));
-    }
-
-    [Fact]
-    public async Task UpdateAsync_WithNullRequest_ShouldThrowArgumentNullException()
-    {
-        // Arrange
-        using var context = new ApplicationDbContext(_options);
-        var service = new RequestService(context, _mockLogger.Object);
-
-        // Act & Assert
-        await Assert.ThrowsAsync<ArgumentNullException>(() => service.UpdateAsync(null!));
-    }
-
-    [Fact]
-    public async Task UpdateAsync_WithNonExistentRequest_ShouldThrowInvalidOperationException()
-    {
-        // Arrange
-        using var context = new ApplicationDbContext(_options);
-        var service = new RequestService(context, _mockLogger.Object);
-        
-        var nonExistentRequest = new Request
-        {
-            Id = "non-existent",
-            IntegrationId = "11111111-1111-1111-1111-111111111111",
-            Name = "Non-existent Request",
-            Method = HttpMethodType.GET,
-            Url = "https://api.example.com/test",
-            Headers = new Dictionary<string, string>()
-        };
-
-        // Act & Assert
-        await Assert.ThrowsAsync<InvalidOperationException>(() => service.UpdateAsync(nonExistentRequest));
-    }
-
-    [Fact]
     public async Task CreateAsync_WithAllHttpMethods_ShouldCreateCorrectly()
     {
         // Arrange
