@@ -8,10 +8,14 @@ healthcheckPath = "/health"
 healthcheckTimeout = 300
 restartPolicyType = "on_failure"
 
-[[services]]
-name = "api-playground-api"
-dockerfile = "Dockerfile.api"
 
 [[services]] 
 name = "api-playground-frontend"
 dockerfile = "Dockerfile.frontend" 
+
+
+[[services]]
+name = "api-playground-api"
+dockerfile = "Dockerfile.api"
+
+
