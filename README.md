@@ -90,7 +90,7 @@ A powerful full-stack web application for storing, managing, and executing HTTP 
 ### Local Development
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/api-playground.git
+git clone https://github.com/kaxitpandya/api-playground.git
 cd api-playground
 
 # Start with Docker Compose
