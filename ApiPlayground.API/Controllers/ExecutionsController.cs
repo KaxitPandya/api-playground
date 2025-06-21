@@ -29,9 +29,9 @@ namespace ApiPlayground.API.Controllers
         public async Task<ActionResult<RequestResult>> ExecuteRequest(string id, [FromBody] PlaceholderMap? placeholders = null)
         {
             try
-            {
-                _logger.LogInformation("Executing request with ID: {Id}", id);
-                
+        {
+            _logger.LogInformation("Executing request with ID: {Id}", id);
+            
                 var result = await _executionService.ExecuteRequestAsync(id, placeholders?.Values ?? new Dictionary<string, string>());
                 
                 return Ok(result);
@@ -173,9 +173,9 @@ namespace ApiPlayground.API.Controllers
             {
                 _logger.LogWarning(ex, "Integration with ID {Id} not found", id);
                 return NotFound(ex.Message);
-            }
-            catch (Exception ex)
-            {
+                            }
+                            catch (Exception ex)
+                            {
                 _logger.LogError(ex, "Error executing integration conditionally with ID: {Id}", id);
                 return StatusCode(500, new { error = "Internal server error", message = ex.Message });
             }

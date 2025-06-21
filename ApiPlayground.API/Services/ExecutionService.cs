@@ -422,11 +422,11 @@ public class ExecutionService : IExecutionService
         
         // Replace manual placeholders
         foreach (var placeholder in placeholders)
-        {
-            input = input.Replace($"{{{{{placeholder.Key}}}}}", placeholder.Value);
+            {
+                input = input.Replace($"{{{{{placeholder.Key}}}}}", placeholder.Value);
         }
         
-        // Check for JSONPath expressions from previous responses
+          // Check for JSONPath expressions from previous responses
         if (previousResults.Any())
         {
             var regex = new Regex(@"\{\{(\$\..*?)\}\}");
