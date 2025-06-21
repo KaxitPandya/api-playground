@@ -1,0 +1,17 @@
+[build]
+builder = "dockerfile"
+dockerfilePath = "Dockerfile.api"
+
+[deploy]
+startCommand = "dotnet ApiPlayground.API.dll"
+healthcheckPath = "/health"
+healthcheckTimeout = 300
+restartPolicyType = "on_failure"
+
+[[services]]
+name = "api-playground-api"
+dockerfile = "Dockerfile.api"
+
+[[services]] 
+name = "api-playground-frontend"
+dockerfile = "Dockerfile.frontend" 
