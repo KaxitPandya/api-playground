@@ -111,5 +111,5 @@ docker-compose up --build
 - `POST /api/openapi/import-file` - Import from OpenAPI file
 
 ### Swagger Documentation
-Visit `/swagger` on your API endpoint for interactive documentation.
+Please Visit `http://localhost:5001/swagger` on your browser for interactive documentation.
 
